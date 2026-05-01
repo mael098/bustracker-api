@@ -1,4 +1,6 @@
 {
+    "exclude": ["prisma.config.ts"],
+    "include": ["src/**/*"],
     "compilerOptions": {
         "module": "NodeNext",
         "moduleResolution": "NodeNext",
