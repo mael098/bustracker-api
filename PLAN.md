@@ -8,19 +8,19 @@ Definir base técnica y estructura del proyecto con NestJS.
 
 ### Tareas
 
-* [ ] Inicializar proyecto con Nest CLI
-* [ ] Configurar TypeScript (strict)
-* [ ] Configurar ESLint + Prettier
-* [ ] Estructura por módulos:
+- [ ] Inicializar proyecto con Nest CLI
+- [ ] Configurar TypeScript (strict)
+- [ ] Configurar ESLint + Prettier
+- [ ] Estructura por módulos:
+    - `devices`
+    - `stops`
+    - `buses`
+    - `detections`
+    - `auth`
+    - `crypto`
 
-  * `devices`
-  * `stops`
-  * `buses`
-  * `detections`
-  * `auth`
-  * `crypto`
-* [ ] Configurar Prisma + PostgreSQL
-* [ ] Configurar variables de entorno (`@nestjs/config`)
+- [ ] Configurar Prisma + PostgreSQL
+- [ ] Configurar variables de entorno (`@nestjs/config`)
 
 ---
 
@@ -34,32 +34,32 @@ Definir entidades base.
 
 #### devices
 
-* id (string)
-* type (bus_beacon | stop_scanner)
-* public_key
-* status (active | revoked)
-* created_at
+- id (string)
+- type (bus_beacon | stop_scanner)
+- public_key
+- status (active | revoked)
+- created_at
 
 #### stops
 
-* id
-* name
-* lat
-* lng
-* device_id
+- id
+- name
+- lat
+- lng
+- device_id
 
 #### buses
 
-* id
-* name
+- id
+- name
 
 #### detections
 
-* id
-* bus_id
-* stop_id
-* scanner_id
-* detected_at
+- id
+- bus_id
+- stop_id
+- scanner_id
+- detected_at
 
 ---
 
@@ -71,13 +71,12 @@ Validar identidad de scanners y beacons.
 
 ### Tareas
 
-* [ ] Servicio `CryptoService`
-* [ ] Verificación de firma (scanner)
-* [ ] Validación de JWT (beacon)
-* [ ] Definir algoritmos:
-
-  * Scanner: Ed25519
-  * JWT: ES256
+- [ ] Servicio `CryptoService`
+- [ ] Verificación de firma (scanner)
+- [ ] Validación de JWT (beacon)
+- [ ] Definir algoritmos:
+    - Scanner: Ed25519
+    - JWT: ES256
 
 ---
 
@@ -102,31 +101,31 @@ Validar identidad de scanners y beacons.
 
 #### 1. Validar scanner
 
-* [ ] Buscar device
-* [ ] Verificar status
-* [ ] Verificar firma
+- [ ] Buscar device
+- [ ] Verificar status
+- [ ] Verificar firma
 
 #### 2. Validar timestamp
 
-* [ ] Ventana ±60s
+- [ ] Ventana ±60s
 
 #### 3. Validar beacon JWT
 
-* [ ] Firma
-* [ ] Expiración
-* [ ] Extraer bus_id
+- [ ] Firma
+- [ ] Expiración
+- [ ] Extraer bus_id
 
 #### 4. Resolver parada
 
-* [ ] Obtener stop por device_id
+- [ ] Obtener stop por device_id
 
 #### 5. Anti-duplicados
 
-* [ ] Verificar última detección (bus + stop)
+- [ ] Verificar última detección (bus + stop)
 
 #### 6. Persistir
 
-* [ ] Guardar detection
+- [ ] Guardar detection
 
 ---
 
@@ -138,8 +137,8 @@ Devuelve estado de paradas
 
 ### Lógica
 
-* [ ] Última detección por parada
-* [ ] Calcular estado:
+- [ ] Última detección por parada
+- [ ] Calcular estado:
 
 ```ts
 bus_passed = now - last_detection < threshold
@@ -151,17 +150,17 @@ bus_passed = now - last_detection < threshold
 
 ### Devices
 
-* [ ] POST `/devices`
-* [ ] PATCH `/devices/:id/revoke`
+- [ ] POST `/devices`
+- [ ] PATCH `/devices/:id/revoke`
 
 ### Stops
 
-* [ ] POST `/stops`
-* [ ] Asignar device
+- [ ] POST `/stops`
+- [ ] Asignar device
 
 ### Buses
 
-* [ ] POST `/buses`
+- [ ] POST `/buses`
 
 ---
 
@@ -173,8 +172,8 @@ Probar sin hardware
 
 ### Tareas
 
-* [ ] Script simulador scanner
-* [ ] Generador JWT (beacon)
+- [ ] Script simulador scanner
+- [ ] Generador JWT (beacon)
 
 ---
 
@@ -182,34 +181,34 @@ Probar sin hardware
 
 ### Opciones
 
-* [ ] Polling (MVP)
-* [ ] SSE (recomendado)
-* [ ] WebSockets
+- [ ] Polling (MVP)
+- [ ] SSE (recomendado)
+- [ ] WebSockets
 
 ---
 
 ## 🛡️ 8. Seguridad
 
-* [ ] Rate limiting por device
-* [ ] Validación DTO (`class-validator`)
-* [ ] Logs de errores
+- [ ] Rate limiting por device
+- [ ] Validación DTO (`class-validator`)
+- [ ] Logs de errores
 
 ---
 
 ## 📊 9. Observabilidad
 
-* [ ] Logger estructurado
-* [ ] Métricas básicas
-* [ ] Alertas simples
+- [ ] Logger estructurado
+- [ ] Métricas básicas
+- [ ] Alertas simples
 
 ---
 
 ## 🚀 10. Iteraciones futuras
 
-* [ ] Dirección del bus
-* [ ] Multi-bus
-* [ ] Dashboard en tiempo real
-* [ ] Historial
+- [ ] Dirección del bus
+- [ ] Multi-bus
+- [ ] Dashboard en tiempo real
+- [ ] Historial
 
 ---
 
@@ -227,10 +226,10 @@ Probar sin hardware
 
 ## 🧠 Notas clave
 
-* Sistema basado en eventos
-* Fuente de verdad: paradas
-* Validar:
+- Sistema basado en eventos
+- Fuente de verdad: paradas
+- Validar:
+    - scanner (quién reporta)
+    - beacon (qué reporta)
 
-  * scanner (quién reporta)
-  * beacon (qué reporta)
-* Tolerar duplicados y pérdidas
+- Tolerar duplicados y pérdidas
