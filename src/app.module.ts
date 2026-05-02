@@ -3,7 +3,7 @@ import { AppController } from './app.controller.js'
 import { AppService } from './app.service'
 import { PrismaService } from './prisma/prisma.service'
 import { ConfigModule } from '@nestjs/config'
-import { validate } from './env.validation.js'
+import { validate } from './config/env.validation.js'
 
 @Module({
     imports: [

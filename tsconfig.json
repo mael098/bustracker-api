@@ -8,6 +8,9 @@
 
         "rootDir": "./src",
         "outDir": "./dist",
+        "paths": {
+            "@/*": ["./src/*"]
+        },
 
         "declaration": true,
         "sourceMap": true,
@@ -22,7 +25,7 @@
 
         "types": ["node"],
 
-        "incremental": true,
+        // "incremental": true,
         "skipLibCheck": true,
 
         "strictNullChecks": true,
