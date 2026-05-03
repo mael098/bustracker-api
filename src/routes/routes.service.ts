@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 // import { CreateRouteDto } from './dto/create-route.dto'
 // import { UpdateRouteDto } from './dto/update-route.dto'
-import { PrismaService } from '@/prisma/prisma.service'
+import { PrismaService } from '../prisma/prisma.service'
 import { FindRouteQueryDto, Include } from './dto/find-all-query.dto'
 
 @Injectable()
