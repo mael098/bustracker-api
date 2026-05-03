@@ -1,5 +1,6 @@
+// @eslint-ignore
 import { readFileSync } from 'node:fs'
-import { PrismaClient } from './generated/prisma/client'
+import { PrismaClient } from './generated/prisma/client.ts'
 import { PrismaPg } from '@prisma/adapter-pg'
 
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
