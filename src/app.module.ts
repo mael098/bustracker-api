@@ -9,6 +9,7 @@ import { PrismaModule } from './prisma/prisma.module'
 @Module({
     imports: [
         ConfigModule.forRoot({
+            ignoreEnvFile: process.env.NODE_ENV === 'production',
             isGlobal: true,
             validate,
         }),
