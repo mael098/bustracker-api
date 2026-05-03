@@ -1,0 +1,41 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider     = "prisma-client"
+  output       = "./generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Route {
+  id         String   @id @default(dbgenerated("snowflake()"))
+  name       String   @unique
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  path RouteNode[]
+}
+
+enum RouteNodeType {
+  stop
+  route
+}
+
+model RouteNode {
+  id         String        @id @default(dbgenerated("snowflake()"))
+  type       RouteNodeType
+  lat        Float         @map("latitude")
+  lng        Float         @map("longitude")
+  order      Int
+  created_at DateTime      @default(now())
+  updated_at DateTime      @updatedAt
+  route_id   String
+
+  route Route @relation(fields: [route_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+}

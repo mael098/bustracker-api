@@ -1,9 +1,20 @@
 import { Module } from '@nestjs/common'
-import { AppController } from './app.controller'
+import { AppController } from './app.controller.js'
 import { AppService } from './app.service'
+import { ConfigModule } from '@nestjs/config'
+import { validate } from './config/env.validation.js'
+import { RoutesModule } from './routes/routes.module'
+import { PrismaModule } from './prisma/prisma.module'
 
 @Module({
-    imports: [],
+    imports: [
+        ConfigModule.forRoot({
+            isGlobal: true,
+            validate,
+        }),
+        RoutesModule,
+        PrismaModule,
+    ],
     controllers: [AppController],
     providers: [AppService],
 })
