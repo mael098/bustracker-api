@@ -2,7 +2,7 @@ import { Transform } from 'class-transformer'
 import { IsEnum, IsArray } from 'class-validator'
 
 export enum Include {
-    NODES = 'nodes',
+    PATH = 'path',
 }
 
 export class FindRouteQueryDto {

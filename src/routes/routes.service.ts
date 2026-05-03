@@ -14,8 +14,21 @@ export class RoutesService {
 
     async findAll({ include }: FindRouteQueryDto) {
         return await this.prisma.route.findMany({
+            omit: {
+                created_at: true,
+                updated_at: true,
+            },
             include: {
-                nodes: include.includes(Include.NODES),
+                path:
+                    include.includes(Include.PATH) ?
+                        {
+                            omit: {
+                                updated_at: true,
+                                created_at: true,
+                                route_id: true,
+                            },
+                        }
+                    :   false,
             },
         })
     }
@@ -28,8 +41,8 @@ export class RoutesService {
                 updated_at: true,
             },
             include: {
-                nodes:
-                    include.includes(Include.NODES) ?
+                path:
+                    include.includes(Include.PATH) ?
                         {
                             omit: {
                                 updated_at: true,

@@ -19,7 +19,7 @@ model Route {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
-  nodes RouteNode[]
+  path RouteNode[]
 }
 
 enum RouteNodeType {
@@ -30,8 +30,8 @@ enum RouteNodeType {
 model RouteNode {
   id         String        @id @default(dbgenerated("snowflake()"))
   type       RouteNodeType
-  latitude   Float
-  longitude  Float
+  lat        Float         @map("latitude")
+  lng        Float         @map("longitude")
   order      Int
   created_at DateTime      @default(now())
   updated_at DateTime      @updatedAt
